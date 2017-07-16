@@ -112,7 +112,7 @@ int main() {
           double * ptry = &ptsy[0];
           Eigen::Map<Eigen::VectorXd> ptsy_transform(ptry, 6);
 
-          auto coeffs = polyfit(ptsx_transform, ptsy_transform);
+          auto coeffs = polyfit(ptsx_transform, ptsy_transform, 3);
 
           // calculate cte and epsi
           double cte = polyeval(coeffs, 0);
@@ -149,14 +149,14 @@ int main() {
 
           for (int i = 2; i < vars.size(); i++) {
             if (i%2 == 0) {
-              mpc_x_vals(push_back[vars[i]]);
+              mpc_x_vals.push_back(vars[i]);
             } else {
               mpc_y_vals.push_back(vars[i]);
             }
 
           }
 
-          dobule Lf = 2.67;
+          double Lf = 2.67;
 
 
           double steer_value = vars[0]/(deg2rad(25)*Lf);
