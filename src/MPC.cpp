@@ -59,7 +59,7 @@ class FG_eval {
     for (int t = 0; t < N - 1; t++) {
       fg[0] += 5*CppAD::pow(vars[delta_start + t], 2);
       fg[0] += 5*CppAD::pow(vars[a_start + t], 2);
-      fg[0] += 100*CppcAD::pow(vars[delta_start + t] * vars[v_start+t], 2);
+      fg[0] += 500*CppAD::pow(vars[delta_start + t] * vars[v_start+t], 2);
     }
 
     // Minimize the value gap between sequential actuations.
@@ -137,7 +137,7 @@ MPC::~MPC() {}
 
 vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   bool ok = true;
-  size_t i;
+
   typedef CPPAD_TESTVECTOR(double) Dvector;
 
   double x = state[0];
