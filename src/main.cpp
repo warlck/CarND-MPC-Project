@@ -32,6 +32,8 @@ string hasData(string s) {
   return "";
 }
 
+
+
 // Evaluate a polynomial.
 double polyeval(Eigen::VectorXd coeffs, double x) {
   double result = 0.0;
@@ -91,6 +93,18 @@ int main() {
           double py = j[1]["y"];
           double psi = j[1]["psi"];
           double v = j[1]["speed"];
+
+          for (int i = 0; i < ptsx.size(); i++) {
+            double shift_x = ptsx[i] - px;
+            double shift_y = ptsy[i] - py;
+
+            ptsx[i] = (shift_x * cos(-psi) - shift_y*sin(-psi));
+            ptsy[i] = (shift_x * sin(-psi) + shift_y*cos(-psi));
+          }
+
+
+
+
 
           /*
           * TODO: Calculate steering angle and throttle using MPC.
